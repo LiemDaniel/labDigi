@@ -207,9 +207,18 @@ class MasterDataRequirementController extends Controller
 
     public function edit($id)
     {
-        $requirements = DB::table('get_master_requirements')->where('id', $id)->get();
+        $requirements = DB::table('get_master_requirements')
+            ->where('id', $id)
+            ->get();
+
+        $master_methods = DB::table('master_method')
+            ->get();
+
+        $master_categorys = DB::table('master_category')
+            ->get();
+
         // dd($testing);
-        return view('master.requirements.edit',compact('requirements',$requirements));
+        return view('master.requirements.edit',compact('requirements', 'master_methods', 'master_categorys'));
         // return view('master.method.edit');
     }
 
